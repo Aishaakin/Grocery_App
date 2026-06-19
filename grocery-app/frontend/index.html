@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RecipeCart Smart Grocery Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <div class="logo">🛒 Recipe-Cart</div>
+    <button class="cart-btn" id="cartToggle">
+      <span>🧺</span>
+      <span id="cartCount" class="badge">0</span>
+    </button>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Pick a recipe.<br><span class="accent"> and calculate it cost.</span></h1>
+      <p>Choose any meal, and know the exact cost of all ingredients before you shop.</p>
+    </div>
+    <div class="hero-controls">
+      <div class="control-group">
+        <label>Meal Category</label>
+        <div class="pill-row" id="categoryPills"></div>
+      </div>
+      <div class="control-group">
+        <label>Servings</label>
+        <div class="stepper">
+          <button id="servDown">−</button>
+          <span id="servCount">2</span>
+          <button id="servUp">+</button>
+        </div>
+      </div>
+      <button class="primary-btn" id="findRecipesBtn">Find Recipes →</button>
+    </div>
+  </section> 
+
+  <section class="section" id="recipesSection" style="display:none">
+    <div class="recipes-header">
+      <h2>Choose a Recipe</h2>
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input type="text" id="searchInput" placeholder="Search recipes..." />
+      </div>
+    </div>
+    <div class="recipe-grid" id="recipeGrid"></div>
+  </section>
+
+  <section class="section" id="ingredientsSection" style="display:none">
+    <div class="ingredients-header">
+      <div>
+        <h2 id="ingredientTitle"></h2>
+        <p id="ingredientSubtitle"></p>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="outline-btn" id="printBtn">🖨️ Print / Save List</button>
+        <button class="primary-btn" id="addAllBtn">Add All to Cart</button>
+      </div>
+    </div>
+    <div class="ingredients-grid" id="ingredientsGrid"></div>
+    <div class="total-bar">
+      <span>Estimated Total</span>
+      <span id="totalDisplay">₦0</span>
+    </div>
+  </section>
+
+  <!-- CART SIDEBAR -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <aside class="cart-sidebar" id="cartSidebar">
+    <div class="cart-header">
+      <h3>Your Cart</h3>
+      <button id="closeCart">✕</button>
+    </div>
+    <div class="cart-items" id="cartItems">
+      <div class="cart-empty">Your cart is empty.<br>Add some ingredients!</div>
+    </div>
+    <div class="cart-footer">
+      <div class="cart-total-row">
+        <span>Total</span>
+        <span id="cartTotal">₦0</span>
+      </div>
+      <button class="primary-btn full-width" id="checkoutBtn">Checkout</button>
+    </div>
+  </aside>
+
+  <!-- LOADER -->
+  <div class="loader-overlay" id="loaderOverlay" style="display:none">
+    <div class="loader-box">
+      <div class="spinner"></div>
+      <p id="loaderText">Loading...</p>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div class="toast" id="toast"></div>
+
+  <!-- ORDER SUMMARY MODAL -->
+  <div class="modal-overlay" id="checkoutModal" style="display:none">
+    <div class="modal">
+      <div class="modal-icon">🎉</div>
+      <h3>Order Calculated!</h3>
+      <p>Your ingredients have been calculated successfully.</p>
+      <div class="order-summary">
+        <div class="order-summary-title">Order Summary</div>
+        <div id="orderItems"></div>
+        <div class="order-divider"></div>
+        <div class="order-total-row">
+          <span>Total</span>
+          <span id="modalTotal">₦0</span>
+        </div>
+      </div>
+      <button class="primary-btn full-width" id="closeModal">Back to Food Menu</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
